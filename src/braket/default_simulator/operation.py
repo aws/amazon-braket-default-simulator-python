@@ -14,7 +14,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 import numpy as np
 
@@ -46,6 +46,18 @@ class GateOperation(Operation, ABC):
     @abstractmethod
     def matrix(self) -> np.ndarray:
         """np.ndarray: The matrix representation of the operation."""
+
+
+class KrausOperation(Operation, ABC):
+    """
+    Encapsulates a quantum channel acting on a set of target qubits in the Kraus operator
+    representation.
+    """
+
+    @property
+    @abstractmethod
+    def matrices(self) -> List[np.ndarray]:
+        """List[np.ndarray]: A list of matrices representating Kraus operators."""
 
 
 class Observable(Operation, ABC):
